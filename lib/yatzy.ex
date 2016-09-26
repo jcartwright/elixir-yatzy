@@ -1,8 +1,7 @@
 defmodule Yatzy do
-  @initial_value 0
 
   def chance(d1, d2, d3, d4, d5) do
-    Enum.reduce([d1, d2, d3, d4, d5], 0, fn(x, acc) -> x + acc end)
+    Enum.reduce([d1, d2, d3, d4, d5], fn(x, acc) -> x + acc end)
   end
 
   def yatzy(d1, d2, d3, d4, d5), do: yatzy([d1, d2, d3, d4, d5])
@@ -36,4 +35,5 @@ defmodule Yatzy do
   defp score_the_dice(face_value, dice) when is_list(dice) do
     Enum.sum(for die <- dice, do: if die == face_value, do: face_value, else: 0)
   end
+
 end
