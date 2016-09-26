@@ -36,18 +36,18 @@ defmodule YatzyTest do
     assert 12 = threes([4,3,3,3,3])
   end
 
-  test "fourths" do
+  test "fours" do
     assert 0 = fours([1,3,5,2,3])
     assert 4 = fours([2,3,5,4,1])
     assert 8 = fours([3,4,4,2,2])
   end
 
-  test "fifths" do
+  test "fives" do
     assert 0 = fives([1,3,4,2,1])
     assert 25 = fives([5,5,5,5,5])
   end
 
-  test "six" do
+  test "sixes" do
     assert 0 = sixes([1,3,2,1,4])
     assert 12 = sixes([1,3,6,1,6])
   end
