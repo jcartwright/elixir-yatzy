@@ -15,66 +15,25 @@ defmodule Yatzy do
     else: 0
   end
 
-  def ones(d1, d2, d3, d4, d5) do
-    case [d1, d2, d3, d4, d5] do
-      [ 1,1,1,1,1 ] -> 5
-      [ 1,1,1,1,_ ] -> 4
-      [ 1,1,1,_,_ ] -> 3
-      [ 1,1,_,_,_ ] -> 2
-      [ 1,_,_,_,_ ] -> 1
-      [ _,_,_,_,_ ] -> 0
-    end
-  end
+  def ones(d1, d2, d3, d4, d5), do: ones([d1, d2, d3, d4, d5])
+  def ones(dice),   do: score_the_dice(1, dice)
 
-  def twos(d1,d2,d3,d4,d5) do
-    case Enum.sort([d1, d2, d3, d4, d5]) do
-      [ 2,2,2,2,2 ] -> 10
-      [ 2,2,2,2,_ ] -> 8
-      [ 2,2,2,_,_ ] -> 6
-      [ 2,2,_,_,_ ] -> 4
-      [ 1,1,2,2,_ ] -> 4
-      [ 2,_,_,_,_ ] -> 2
-      [ _,_,_,_,_ ] -> 0
-    end
-  end
+  def twos(d1, d2, d3, d4, d5), do: twos([d1, d2, d3, d4, d5])
+  def twos(dice),   do: score_the_dice(2, dice)
 
-  def threes([d1, d2, d3, d4, d5 ]) do
-    sum = @initial_value
-    if (d1 == 3) do
-      sum = sum + 3
-    end
-    if (d2 == 3) do
-      sum = sum + 3
-    end
-    if (d3 == 3) do
-      sum = sum + 3
-    end
-    if (d4 == 3) do
-      sum = sum + 3
-    end
-    if (d5 == 3) do
-      sum = sum + 3
-    end
-    sum
-  end
+  def threes(d1, d2, d3, d4, d5), do: threes([d1, d2, d3, d4, d5])
+  def threes(dice), do: score_the_dice(3, dice)
 
-  def fours([d1, d2, d3, d4, d5]) do
-    all = for n <- [d1, d2, d3, d4, d5] do
-      if n == 4 do
-        4
-      else
-        0
-      end
-    end
-    Enum.sum all
-  end
+  def fours(d1, d2, d3, d4, d5), do: fours([d1, d2, d3, d4, d5])
+  def fours(dice),  do: score_the_dice(4, dice)
+  
+  def fives(d1, d2, d3, d4, d5), do: fives([d1, d2, d3, d4, d5])
+  def fives(dice),  do: score_the_dice(5, dice)
+  
+  def sixes(d1, d2, d3, d4, d5), do: sixes([d1, d2, d3, d4, d5])
+  def sixes(dice),  do: score_the_dice(6, dice)
 
-  def fives(dice) do
-    result = for d <- dice do
-      if d == 5, do: 5, else: 0
-    end
-    Enum.sum result
+  defp score_the_dice(face_value, dice) when is_list(dice) do
+    Enum.sum(for die <- dice, do: if die == face_value, do: face_value, else: 0)
   end
-
-  def sixes(dice), do: Enum.sum(for die <- dice, do: if die == 6, do: 6, else: 0)
 end
