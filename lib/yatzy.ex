@@ -1,18 +1,8 @@
-defmodule Math do
-  def sum(a, b) do
-    a + b
-  end
-end
-
 defmodule Yatzy do
   @initial_value 0
 
   def chance(d1, d2, d3, d4, d5) do
-    d1
-      |> Math.sum(d2)
-      |> Math.sum(d3)
-      |> Math.sum(d4)
-      |> Math.sum(d5)
+    Enum.reduce([d1, d2, d3, d4, d5], 0, fn(x, acc) -> x + acc end)
   end
 
   def yatzy(d1, d2,d3, d4, d5) do
