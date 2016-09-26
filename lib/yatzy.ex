@@ -1,7 +1,8 @@
 defmodule Yatzy do
 
-  def chance(d1, d2, d3, d4, d5) do
-    Enum.reduce([d1, d2, d3, d4, d5], fn(x, acc) -> x + acc end)
+  def chance(d1, d2, d3, d4, d5), do: chance([d1, d2, d3, d4, d5])
+  def chance(dice) when is_list(dice) do
+    Enum.reduce(dice, fn(x, acc) -> x + acc end)
   end
 
   def yatzy(d1, d2, d3, d4, d5), do: yatzy([d1, d2, d3, d4, d5])
