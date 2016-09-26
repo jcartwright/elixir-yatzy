@@ -5,18 +5,14 @@ defmodule Yatzy do
     Enum.reduce([d1, d2, d3, d4, d5], 0, fn(x, acc) -> x + acc end)
   end
 
-  def yatzy(d1, d2,d3, d4, d5) do
-    dice = [d1, d2, d3, d4, d5]
+  def yatzy(d1, d2, d3, d4, d5), do: yatzy([d1, d2, d3, d4, d5])
 
-    count = Enum.reject(dice, fn(d) -> d != d1 end)
-      |> Enum.count
+  def yatzy(dice) when is_list(dice) do
+    d1 = List.first(dice)
 
-    try do
-      ^count = 5
-      50
-    rescue
-      _e in MatchError -> 0
-    end
+    if Enum.count(dice) == 5 && Enum.all?(dice, &(&1 == d1)),
+    do: 50,
+    else: 0
   end
 
   def ones(d1, d2, d3, d4, d5) do
